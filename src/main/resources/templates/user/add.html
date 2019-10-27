@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<!--@todo add form with name attributes that map to fields on user class-->
+<form method="post" style="max-width:600px;" th:object="${user}">
+    <div class="form-group">
+        <label th:for="*{username}">Username</label>
+        <input class="form-control" type="text" th:field="*{username}" />
+        <span th:errors="*{username}" class="error" style="color: red;"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="*{email}">Email</label>
+        <input class="form-control" type="text" th:field="*{email}" />
+        <span th:errors="*{email}" class="error" style="color: red;"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="*{password}">Password</label>
+        <input class="form-control" type="password" th:field="*{password}" />
+        <span th:errors="*{password}" class="error" style="color: red;"></span>
+    </div>
+    <div class="form-group">
+        <div class="form-group">
+            <label for="verify-password-field">Verify Password</label>
+            <input class="form-control" id="verify-password-field" type="password" name="verify_password" />
+        </div>
+
+        <p th:if="${error_message}" style="color:red;" th:text="${error_message}"></p>
+    <input type="submit" value="add user" />
+    </div>
+</form>
+
+</body>
+</html>
