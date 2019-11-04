@@ -1,12 +1,21 @@
 package org.launchcode.dndmvc.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
  * Created by LaunchCode
  */
+
+@Entity
 public class Dnd {
+
+    @Id
+    @GeneratedValue
+    private int id;
 
     @NotNull
     @Size(min=3, max=15)
@@ -16,26 +25,19 @@ public class Dnd {
     @Size(min=1, message = "Description must not be empty")
     private String description;
 
-    private int dndId;
-    private static int nextId = 1;
+
 
     public Dnd(String name, String description) {
-        this();
         this.name = name;
         this.description = description;
     }
 
     public Dnd() {
-        dndId = nextId;
-        nextId++;
+
     }
 
-    public int getDndId() {
-        return dndId;
-    }
-
-    public void setDndId(int dndId) {
-        this.dndId = dndId;
+    public int getId() {
+        return id;
     }
 
     public String getName() {
