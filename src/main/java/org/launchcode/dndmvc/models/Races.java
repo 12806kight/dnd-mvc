@@ -1,42 +1,45 @@
 package org.launchcode.dndmvc.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-/**
- * Created by LaunchCode
- */
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class Dnd {
-
+public class Races {
     @Id
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @NotNull
     @Size(min=3, max=15)
     private String name;
 
     @NotNull
-    @Size(min=1, message = "Description must not be empty")
+    @Size(min=1)
     private String description;
 
+    @OneToMany
+    @JoinColumn(name = "races_id")
+    private List<Dungeon> dungeons = new ArrayList<>();
 
 
-    public Dnd(String name, String description) {
+    public Races(String name, String description) {
         this.name = name;
         this.description = description;
-    }
-
-    public Dnd() {
 
     }
 
-    public int getId() {
+    public Races() {
+
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getId() {
         return id;
     }
 

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+<div class="container body-content">
+
+    <form th:object="${races}" method="post">
+
+        <div class="form-group" th:classappend="${#fields.hasErrors('name') ? 'has-error' : ''}" >
+            <label th:for="name">Name</label>
+            <input type="text" class="form-control" th:field="*{name}"/>
+            <span th:errors="*{name}"></span>
+        </div>
+        <div>
+            <label th:for="description">Description</label>
+            <textarea class="form-control" rows="12"
+                      style="margin-top: 10px;"
+                      th:field="*{description}" th:inline="text">
+            </textarea>
+        </div>
+        <input type="submit" value="Add Race" />
+    </form>
+
+</div>
+
+</body>
+</html>

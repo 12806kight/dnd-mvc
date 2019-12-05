@@ -1,34 +1,41 @@
 package org.launchcode.dndmvc.models;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.Email;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@Entity
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @NotNull
-    @Size(min=5, max=15, message="Please enter a valid username!!!")
+    @Size(min=3, max=15)
     private String username;
 
-
     @NotNull
-    @Size(min=5, max= 15, message="Please enter a valid password")
+    @Size(min=3, max=15)
     private String password;
 
-    @Email
-    private String email = "";
-
-    public User(){
-
+    public User() {
     }
 
-    public User(String username, String password, String email){
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.email = email;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -45,13 +52,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 }

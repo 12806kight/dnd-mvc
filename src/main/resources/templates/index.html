@@ -15,8 +15,8 @@
           crossorigin="anonymous">
     <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
 </head>
-<nav th:replace="fragments :: navigation"></nav>
 <body>
+<nav th:replace="fragments :: navigation"></nav>
 <div class="container my-2">
     <div class="card">
         <div class="card-body">
@@ -26,12 +26,15 @@
                             class="fas fa-user-plus ml-2"> Add Character</i></a>
                 </p>
                 <div class="col-md-10">
-                    <h2 th:case="null">No Characters yet!</h2>
+                    <h2 th:case="null">Character Creation</h2>
                     <div th:case="*">
-                        <table class="table table-striped table-responsive-md">
+                           <table class="table table-striped table-responsive-md">
                             <thead>
                             <tr>
                                 <th>Name</th>
+                                <th>Level</th>
+                                <th>Class</th>
+                                <th>Race</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -39,6 +42,9 @@
                             <tbody>
                             <tr th:each="dungeon : ${dungeons}">
                                 <td th:text="${dungeon.name}"></td>
+                                <td th:text="${dungeon.level}"></td>
+                                <td th:text="${dungeon.classes.name}"></td>
+                                <td th:text="${dungeon.races.name}"></td>
                                 <td><a th:href="@{/dungeons/edit/{id}(id=${dungeon.id})}"
                                        class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
                                 <td><a
