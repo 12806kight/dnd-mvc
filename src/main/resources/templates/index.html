@@ -5,6 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Users</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -13,10 +14,12 @@
           href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
           integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
           crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
 </head>
 <body>
 <nav th:replace="fragments :: navigation"></nav>
+
+
 <div class="container my-2">
     <div class="card">
         <div class="card-body">
@@ -28,13 +31,16 @@
                 <div class="col-md-10">
                     <h2 th:case="null">Character Creation</h2>
                     <div th:case="*">
-                           <table class="table table-striped table-responsive-md">
+                           <table align="right" class="table table-striped table-responsive-md">
                             <thead>
                             <tr>
                                 <th>Name</th>
                                 <th>Level</th>
-                                <th>Class</th>
+                                <th><a href="/classes">Class</a></th>
+                                <th>Health</th>
+                                <th>Primary Ability</th>
                                 <th>Race</th>
+                                <th>Alignment</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -43,13 +49,16 @@
                             <tr th:each="dungeon : ${dungeons}">
                                 <td th:text="${dungeon.name}"></td>
                                 <td th:text="${dungeon.level}"></td>
-                                <td th:text="${dungeon.classes.name}"></td>
+                                <td><a th:href="@{/classes/description/{id}(id=${dungeon.classes.id})}" th:text="${dungeon.classes.name}"></a></td>
+                                <td th:text="${dungeon.classes.hitdice}"></td>
+                                <td th:text="${dungeon.classes.ability}"></td>
                                 <td th:text="${dungeon.races.name}"></td>
+                                <td th:text="${dungeon.alignment.name}"></td>
                                 <td><a th:href="@{/dungeons/edit/{id}(id=${dungeon.id})}"
                                        class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
                                 <td><a
                                         th:href="@{/dungeons/delete/{id}(id=${dungeon.id})}"
-                                        class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+                                        class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
                             </tr>
                             </tbody>
                         </table>

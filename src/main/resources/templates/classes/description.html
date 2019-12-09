@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<link rel="stylesheet" th:href="@{/css/styles.css}"/>
+<body class="container">
+
+<h1  th:text="${classes.name}"></h1>
+<p th:text="${classes.description}"></p>
+<div class="container body-content">
+    <ul th:each="classFeature : ${classFeatures}">
+        <li id="big" th:text="${classFeature.name}"></li>
+        <li id="small" th:text="${classFeature.description}"></li>
+    </ul>
+    <ul class="list" th:each="subclass : ${subclasses}">
+        <li><a th:href="@{'/classes/subclass/' + ${subclass.id}}" th:text="${subclass.name}" ></a></li>
+    </ul>
+</div>
+
+
+
+
+
+</body>
+</html>

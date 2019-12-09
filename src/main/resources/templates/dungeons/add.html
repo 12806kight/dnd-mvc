@@ -56,6 +56,15 @@
                                 </option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label th:for="alignmentsId">Alignment</label>
+                            <select name="alignmentsId">
+                                <option th:each="alignment: ${alignments}"
+                                        th:text="${alignment.name}"
+                                        th:value="${alignment.id}">
+                                </option>
+                            </select>
+                        </div>
                         <div class="col-md-6">
                             <input type="submit" class="btn btn-primary" value="Add Character">
                         </div>

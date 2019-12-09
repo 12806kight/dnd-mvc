@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Subclasses {
+public class ClassFeatures {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,13 +22,13 @@ public class Subclasses {
     @ManyToOne
     private Classes classes;
 
-    public Subclasses(String name, String description) {
+    public ClassFeatures(String name, String description) {
         this.name = name;
         this.description = description;
 
     }
 
-    public Subclasses() {
+    public ClassFeatures() {
 
     }
 
@@ -64,5 +64,6 @@ public class Subclasses {
         this.description = description;
     }
 }
+
 
 

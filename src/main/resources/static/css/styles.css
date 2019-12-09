@@ -1,3 +1,93 @@
 body {
-    font-family: sans-serif;
+  background-color: ivory;
+  font-family: 'Raleway', sans-serif;
+}
+
+
+#banner {
+  background-image: url("https://cdn.mos.cms.futurecdn.net/hbqiS6U4Jtvc2pVzpFj4ck-650-80.jpg");
+  background-size: 100% 100%;
+  background-position: bottom center;
+  height: 700px;
+  width: 100%;
+}
+
+
+
+#main {
+  background-color: hsla(61, 100%, 50%, 0.13);
+  margin: 0 auto;
+  padding: 40px;
+  text-align: left;
+  width: 1000px;
+  height: 1000px;
+  overflow: scroll;
+}
+
+h1, footer {
+  color: hsla(61, 100%, 50%, 0.212);
+  font-size: 42px;
+  font-weight: 600;
+  text-align: center;
+  font: cursive;
+}
+
+h2 {
+  color: red;
+  font-size: 25px;
+  line-height: 48px;
+  padding: 20px 30px;
+  margin: 30px 20px;
+  text-align: center;
+}
+
+#big {
+  list-style-type: none;
+  color: black;
+  font-size: 26px;
+  font-weight: 1000;
+  padding: 20px 10px;
+}
+
+#small {
+  list-style-type: none;
+  color: black;
+  font-size: 12px;
+  font-weight: 1000;
+  padding: 20px 10px;
+}
+
+table {
+  color: hsla(189, 100%, 50%, 0.85);
+  font-size: 12px;
+  line-height: 24px;
+  margin-top: 20px;
+  padding: 10px 10px;
+}
+
+.quote {
+  margin: 0 auto;
+  width: 400px;
+}
+
+.byline {
+  border-bottom: 1px solid LightGrey;
+  border-top: 1px solid LightGrey;
+  color: DarkGrey;
+  font-size: 14px;
+  font-weight: 200;
+}
+
+#barbarian {
+     color: red;
+}
+
+ul.list li{
+  list-style-type: none;
+  width: auto;
+  float: left;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }

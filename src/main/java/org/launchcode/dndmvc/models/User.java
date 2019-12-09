@@ -42,7 +42,7 @@ public class User {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername() {
         this.username = username;
     }
 
@@ -50,7 +50,10 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword() {
         this.password = password;
     }
-}
+
+
+    }
+

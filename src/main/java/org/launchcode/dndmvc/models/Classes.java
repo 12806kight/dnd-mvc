@@ -19,8 +19,16 @@ public class Classes {
     private String name;
 
     @NotNull
-    @Size(min=1)
+    @Size(min=1, max = 10000)
     private String description;
+
+    @NotNull
+    @Size(min=2, max=3)
+    private String hitdice;
+
+    @NotNull
+    @Size(min=1, max= 20)
+    private String ability;
 
     @OneToMany
     @JoinColumn(name = "classes_id")
@@ -30,9 +38,15 @@ public class Classes {
     @JoinColumn(name = "classes_id")
     private List<Subclasses> subclasses = new ArrayList<>();
 
-    public Classes(String name, String description) {
+    @OneToMany
+    @JoinColumn(name = "classes_id")
+    private List<ClassFeatures> classFeatures = new ArrayList<>();
+
+    public Classes(String name, String description, String hitdice, String ability) {
         this.name = name;
         this.description = description;
+        this.hitdice = hitdice;
+        this.ability = ability;
 
     }
 
@@ -64,5 +78,20 @@ public class Classes {
         this.description = description;
     }
 
+    public String getHitdice() {
+        return hitdice;
+    }
+
+    public void setHitdice(String hitdice) {
+        this.hitdice = hitdice;
+    }
+
+    public String getAbility() {
+        return ability;
+    }
+
+    public void setAbility(String ability) {
+        this.ability = ability;
+    }
 }
 

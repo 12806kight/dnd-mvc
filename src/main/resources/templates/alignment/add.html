@@ -6,19 +6,12 @@
 
 <div class="container body-content">
 
-    <form th:object="${classes}" method="post">
+    <form th:object="${alignment}" method="post">
 
         <div class="form-group" th:classappend="${#fields.hasErrors('name') ? 'has-error' : ''}" >
             <label th:for="name">Name</label>
             <input type="text" class="form-control" th:field="*{name}"/>
             <span th:errors="*{name}"></span>
-        </div>
-        <div class="form-group col-md-6">
-            <label for="hitdice" class="col-form-label">Hitdice</label> <input
-                type="text" th:field="*{hitdice}" class="form-control" id="hitdice"
-                placeholder="Hitdice"> <span
-                th:if="${#fields.hasErrors('hitdice')}" th:errors="*{hitdice}"
-                class="text-danger"></span>
         </div>
         <div>
             <label th:for="description">Description</label>
@@ -27,7 +20,7 @@
                       th:field="*{description}" th:inline="text">
             </textarea>
         </div>
-        <input type="submit" value="Add Class" />
+        <input type="submit" value="Add Race" />
     </form>
 
 </div>

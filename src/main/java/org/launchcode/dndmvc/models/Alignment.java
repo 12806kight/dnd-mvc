@@ -3,49 +3,42 @@ package org.launchcode.dndmvc.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class Subclasses {
-
+public class Alignment{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotNull
-    @Size(min=3, max=25)
+    @Size(min=3, max=15)
     private String name;
 
     @NotNull
-    @Size(min=1, max=3000)
+    @Size(min=1)
     private String description;
 
-    @ManyToOne
-    private Classes classes;
+    @OneToMany
+    @JoinColumn(name = "alignment_id")
+    private List<Dungeon> dungeons = new ArrayList<>();
 
-    public Subclasses(String name, String description) {
+    public Alignment(String name, String description){
         this.name = name;
         this.description = description;
-
     }
 
-    public Subclasses() {
+    public Alignment(){
 
-    }
-
-    public Classes getClasses() {
-        return classes;
-    }
-
-    public void setClasses(Classes classes) {this.classes = classes;
-    }
-
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -64,5 +57,3 @@ public class Subclasses {
         this.description = description;
     }
 }
-
-

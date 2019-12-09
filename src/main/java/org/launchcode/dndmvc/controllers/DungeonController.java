@@ -1,8 +1,10 @@
 package org.launchcode.dndmvc.controllers;
 
+import org.launchcode.dndmvc.models.Alignment;
 import org.launchcode.dndmvc.models.Classes;
 import org.launchcode.dndmvc.models.Dungeon;
 import org.launchcode.dndmvc.models.Races;
+import org.launchcode.dndmvc.models.data.AlignmentDao;
 import org.launchcode.dndmvc.models.data.ClassesDao;
 import org.launchcode.dndmvc.models.data.DungeonRepository;
 import org.launchcode.dndmvc.models.data.RacesDao;
@@ -26,6 +28,9 @@ public class DungeonController {
     @Autowired
     private RacesDao racesDao;
 
+    @Autowired
+    private AlignmentDao alignmentDao;
+
 
     @Autowired
     public DungeonController(DungeonRepository dungeonRepository) {
@@ -33,11 +38,12 @@ public class DungeonController {
     }
 
     @GetMapping("create")
-    public String showSignUpForm(Model model) {
+    public String showCharacterform(Model model) {
         model.addAttribute("title","Add Character");
         model.addAttribute(new Dungeon());
         model.addAttribute("classes", classesDao.findAll());
         model.addAttribute("races", racesDao.findAll());
+        model.addAttribute("alignments", alignmentDao.findAll());
         return "dungeons/add";
     }
 
@@ -48,12 +54,18 @@ public class DungeonController {
     }
 
     @PostMapping("add")
-    public String addStudent(@Valid Dungeon dungeon, BindingResult result, @RequestParam long classesId,@RequestParam long racesId, Model model) {
+    public String addCharacter(@Valid Dungeon dungeon, BindingResult result, @RequestParam long alignmentsId ,@RequestParam long classesId,@RequestParam long racesId, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("title","Add Character");
+            model.addAttribute("classes", classesDao.findAll());
+            model.addAttribute("races", racesDao.findAll());
+            model.addAttribute("alignments", alignmentDao.findAll());
             return "dungeons/add";
         }
 
+        Alignment alignment = alignmentDao.findById(alignmentsId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid dungeon Id:" + alignmentsId));
+        dungeon.setAlignment(alignment);
         Classes classes = classesDao.findById(classesId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid dungeon Id:" + classesId));
         dungeon.setClasses(classes);
@@ -69,19 +81,26 @@ public class DungeonController {
         Dungeon dungeon = dungeonRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid dungeon Id:" + id));
         model.addAttribute("dungeon", dungeon);
+        model.addAttribute("alignments", alignmentDao.findAll());
         model.addAttribute("classes", classesDao.findAll());
         model.addAttribute("races", racesDao.findAll());
         return "dungeons/update";
     }
 
     @PostMapping("update/{id}")
-    public String updateStudent(@PathVariable("id") long id, @Valid Dungeon dungeon, BindingResult result,  @RequestParam long classesId,@RequestParam long racesId,
+    public String updateCharacter(@PathVariable("id") long id, @Valid Dungeon dungeon, BindingResult result, @RequestParam long alignmentsId ,@RequestParam long classesId,@RequestParam long racesId,
                                 Model model) {
         if (result.hasErrors()) {
             dungeon.setId(id);
+            model.addAttribute("classes", classesDao.findAll());
+            model.addAttribute("races", racesDao.findAll());
+            model.addAttribute("alignments", alignmentDao.findAll());
             return "dungeons/update";
         }
 
+        Alignment alignment = alignmentDao.findById(alignmentsId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid dungeon Id:" + alignmentsId));
+        dungeon.setAlignment(alignment);
         Classes classes = classesDao.findById(classesId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid dungeon Id:" + classesId));
         dungeon.setClasses(classes);

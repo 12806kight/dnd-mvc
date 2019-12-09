@@ -24,6 +24,9 @@ public class Dungeon {
     @ManyToOne
     private Races races;
 
+    @ManyToOne
+    private Alignment alignment;
+
     public Dungeon() {
     }
 
@@ -31,6 +34,14 @@ public class Dungeon {
         this.name = name;
         this.level = level;
 
+    }
+
+    public Alignment getAlignment() {
+        return alignment;
+    }
+
+    public void setAlignment(Alignment alignment) {
+        this.alignment = alignment;
     }
 
     public Classes getClasses() {

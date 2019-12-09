@@ -15,15 +15,14 @@
           crossorigin="anonymous">
     <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
 </head>
-<nav th:replace="fragments :: navigation"></nav>
 <body>
 <div class="container my-5">
     <h3> Add Character</h3>
     <div class="card">
         <div class="card-body">
             <div class="col-md-10">
-                <form action="#" th:action="@{/classes/subclassAdd}"
-                      th:object="${subclasses}" method="post">
+                <form action="#" th:action="@{/classes/classFeatureAdd}"
+                      th:object="${classFeatures}" method="post">
                     <div class="row">
                         <div class="form-group col-md-8">
                             <label for="name" class="col-form-label">Name</label> <input
@@ -35,12 +34,12 @@
                         <div class="form-group col-md-8">
                             <label for="description" class="col-form-label">Description</label> <input
                                 type="text" th:field="*{description}" class="form-control" id="description"
-                                placeholder="Name"> <span
+                                placeholder="Description"> <span
                                 th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
                                 class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label th:for="classesId">Category</label>
+                            <label th:for="classesId">Class</label>
                             <select name="classesId">
                                 <option th:each="class: ${classes}"
                                         th:text="${class.name}"
@@ -49,7 +48,7 @@
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <input type="submit" class="btn btn-primary" value="Add Character">
+                            <input type="submit" class="btn btn-primary" value="Add Class Feature">
                         </div>
 
                         <div class="form-group col-md-8"></div>
